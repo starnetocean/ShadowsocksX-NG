@@ -32,6 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var whiteListModeMenuItem: NSMenuItem!
     @IBOutlet weak var whiteListDomainMenuItem: NSMenuItem!
     @IBOutlet weak var whiteListIPMenuItem: NSMenuItem!
+    @IBOutlet weak var automaticUpdatePACMenuItem: NSMenuItem!
+    @IBOutlet weak var automaticUpdateGFWListMenuItem: NSMenuItem!
+    @IBOutlet weak var automaticUpdateWhiteListMenuItem: NSMenuItem!
     
     @IBOutlet weak var serversMenuItem: NSMenuItem!
     @IBOutlet var showQRCodeMenuItem: NSMenuItem!
@@ -41,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var lanchAtLoginMenuItem: NSMenuItem!
     
     var statusItem: NSStatusItem!
+    var timer:NSTimer!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -200,6 +204,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBAction func updateWhiteList(sender: NSMenuItem) {
         UpdatePACFromWhiteList()
     }
+    
+    @IBAction func automaticUpdateGFWList(sender: NSMenuItem) {
+    }//调用NSTimer
+    
+    @IBAction func automaticUpdateWhiteList(sender: NSMenuItem) {
+    }
+    
     
     @IBAction func editUserRulesForPAC(sender: NSMenuItem) {
         if editUserRulesWinCtrl != nil {

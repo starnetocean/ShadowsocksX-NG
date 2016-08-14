@@ -15,6 +15,9 @@
             <connections>
                 <outlet property="RunningStatusMenuItem" destination="fzk-mE-CEV" id="R4x-gK-Qcw"/>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
+                <outlet property="automaticUpdateGFWListMenuItem" destination="WhL-WT-C2M" id="9W4-su-sE0"/>
+                <outlet property="automaticUpdatePACMenuItem" destination="Xgm-CI-Otw" id="zM4-cP-C13"/>
+                <outlet property="automaticUpdateWhiteListMenuItem" destination="7iq-HM-hxa" id="P3v-gG-TMY"/>
                 <outlet property="globalModeMenuItem" destination="Mw3-Jm-eXA" id="ar5-Yx-3ze"/>
                 <outlet property="lanchAtLoginMenuItem" destination="eUq-p7-ICK" id="w4p-0c-DZn"/>
                 <outlet property="manualModeMenuItem" destination="8PR-gs-c5N" id="9qz-mU-5kt"/>
@@ -104,9 +107,15 @@
                                     <items>
                                         <menuItem title="GFW List" id="WhL-WT-C2M">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="automaticUpdateWhiteList:" target="Voe-Tx-rLC" id="lzU-CE-dVg"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="White List" id="7iq-HM-hxa">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="automaticUpdateGFWList:" target="Voe-Tx-rLC" id="9Bt-Hb-brG"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
