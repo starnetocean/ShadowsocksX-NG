@@ -82,3 +82,16 @@
 
 /* Class = "NSMenuItem"; title = "更新全部白名单"; ObjectID = "gde-ZE-086"; */
 "gde-ZE-086.title" = "更新全部白名单";
+
+/* Class = "NSMenu"; title = "自动更新PAC"; ObjectID = "rDG-7r-yMp"; */
+"rDG-7r-yMp.title" = "自动更新PAC";
+
+/* Class = "NSMenuItem"; title = "自动更新PAC"; ObjectID = "Xgm-CI-Otw"; */
+"Xgm-CI-Otw.title" = "自动更新PAC";
+
+/* Class = "NSMenuItem"; title = "GFW List"; ObjectID = "WhL-WT-C2M"; */
+"WhL-WT-C2M.title" = "GFW List";
+
+/* Class = "NSMenuItem"; title = "白名单"; ObjectID = "7iq-HM-hxa"; */
+"7iq-HM-hxa.title" = "白名单";
+

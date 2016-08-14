@@ -98,6 +98,19 @@
                                     <action selector="updateWhiteList:" target="Voe-Tx-rLC" id="2Iv-M4-k9C"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Automatic Update PAC" id="Xgm-CI-Otw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Automatic Update PAC" id="rDG-7r-yMp">
+                                    <items>
+                                        <menuItem title="GFW List" id="WhL-WT-C2M">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="White List" id="7iq-HM-hxa">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Edit User Rules For PAC..." id="rms-p0-CvB">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
