@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0830AA6F1D605CE000E03461 /* AutoUpdatePACController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830AA6E1D605CE000E03461 /* AutoUpdatePACController.swift */; };
 		088EC3971D5F5B8600E40791 /* whitelist.pac in Resources */ = {isa = PBXBuildFile; fileRef = 088EC3961D5F5B8600E40791 /* whitelist.pac */; };
 		088EC3991D5F5BA300E40791 /* whiteiplist.pac in Resources */ = {isa = PBXBuildFile; fileRef = 088EC3981D5F5BA300E40791 /* whiteiplist.pac */; };
 		088EC3CD1D60549E00E40791 /* AutoUpdatePACController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 088EC3CB1D60549E00E40791 /* AutoUpdatePACController.xib */; };
@@ -91,10 +92,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0830AA6E1D605CE000E03461 /* AutoUpdatePACController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoUpdatePACController.swift; sourceTree = "<group>"; };
 		088EC3961D5F5B8600E40791 /* whitelist.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whitelist.pac; sourceTree = "<group>"; };
 		088EC3981D5F5BA300E40791 /* whiteiplist.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whiteiplist.pac; sourceTree = "<group>"; };
-		088EC3CA1D60549E00E40791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/AutoUpdatePACController.swift; sourceTree = "<group>"; };
 		088EC3CC1D60549E00E40791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutoUpdatePACController.xib; sourceTree = "<group>"; };
+		088EC3CF1D60593F00E40791 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutoUpdatePACController.strings"; sourceTree = "<group>"; };
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-proxy_conf_helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,7 +325,7 @@
 				9B0D55481D2CC85400A4A8E2 /* ProxyPreferencesController.xib */,
 				C8E42A6A1D4F270A0074C7EA /* UserRulesController.swift */,
 				C8E42A701D4F2CAF0074C7EA /* UserRulesController.xib */,
-				088EC3C91D60549E00E40791 /* AutoUpdatePACController.swift */,
+				0830AA6E1D605CE000E03461 /* AutoUpdatePACController.swift */,
 				088EC3CB1D60549E00E40791 /* AutoUpdatePACController.xib */,
 			);
 			name = UI;
@@ -633,6 +635,7 @@
 			files = (
 				9B3FFF171D072FDE0019A709 /* LaunchAtLoginController.m in Sources */,
 				9B3FFF4F1D09D9D50019A709 /* ProxyConfHelper.m in Sources */,
+				0830AA6F1D605CE000E03461 /* AutoUpdatePACController.swift in Sources */,
 				9BB706A71D1B982300551F0E /* SWBApplication.m in Sources */,
 				9B3FFF1E1D0732660019A709 /* Utils.m in Sources */,
 				9B3FFF321D08CEE40019A709 /* SWBQRCodeWindowController.m in Sources */,
@@ -683,18 +686,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		088EC3C91D60549E00E40791 /* AutoUpdatePACController.swift */ = {
-			isa = PBXVariantGroup;
-			children = (
-				088EC3CA1D60549E00E40791 /* Base */,
-			);
-			name = AutoUpdatePACController.swift;
-			sourceTree = "<group>";
-		};
 		088EC3CB1D60549E00E40791 /* AutoUpdatePACController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				088EC3CC1D60549E00E40791 /* Base */,
+				088EC3CF1D60593F00E40791 /* zh-Hans */,
 			);
 			name = AutoUpdatePACController.xib;
 			sourceTree = "<group>";

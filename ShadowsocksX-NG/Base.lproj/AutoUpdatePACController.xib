@@ -7,12 +7,16 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AutoUpdatePACController" customModule="ShadowsocksX_NG" customModuleProvider="target">
             <connections>
+                <outlet property="GFWListURLField" destination="co4-fI-uDs" id="csO-O6-GzF"/>
+                <outlet property="PeriodPopUpButton" destination="LLP-8o-xoN" id="6wZ-Ag-p5Y"/>
+                <outlet property="WhiteDomainListField" destination="DLE-8C-HDX" id="SN4-11-Q8Z"/>
+                <outlet property="WhiteIPListField" destination="25l-Fm-TkV" id="euR-sM-hQD"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="Auto Update PAC" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -106,13 +110,16 @@ DQ
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hnn-Nl-rIW">
-                        <rect key="frame" x="296" y="13" width="81" height="32"/>
+                        <rect key="frame" x="295" y="13" width="82" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="hnn-Nl-rIW" secondAttribute="height" multiplier="23:7" id="buo-Ks-DhJ"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t1O-sp-e4c">
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t1O-sp-e4c">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y2H-vv-i4s">

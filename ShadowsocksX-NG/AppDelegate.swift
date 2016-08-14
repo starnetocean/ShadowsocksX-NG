@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var advPreferencesWinCtrl: AdvPreferencesWindowController!
     var proxyPreferencesWinCtrl: ProxyPreferencesController!
     var editUserRulesWinCtrl: UserRulesController!
+    var autoUpdatePACCtrl: AutoUpdatePACController!
 
     var launchAtLoginController: LaunchAtLoginController = LaunchAtLoginController()
     
@@ -209,6 +210,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }//调用NSTimer
     
     @IBAction func automaticUpdateWhiteList(sender: NSMenuItem) {
+        autoUpdatePACCtrl = AutoUpdatePACController(windowNibName: "AutoUpdatePACController")
+        autoUpdatePACCtrl.showWindow(self)
+        NSApp.activateIgnoringOtherApps(true)
+        autoUpdatePACCtrl.window?.makeKeyAndOrderFront(nil)
     }
     
     

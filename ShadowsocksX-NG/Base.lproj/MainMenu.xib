@@ -108,13 +108,13 @@
                                         <menuItem title="GFW List" id="WhL-WT-C2M">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="automaticUpdateWhiteList:" target="Voe-Tx-rLC" id="lzU-CE-dVg"/>
+                                                <action selector="automaticUpdateGFWList:" target="Voe-Tx-rLC" id="cYK-Q0-2w0"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="White List" id="7iq-HM-hxa">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="automaticUpdateGFWList:" target="Voe-Tx-rLC" id="9Bt-Hb-brG"/>
+                                                <action selector="automaticUpdateWhiteList:" target="Voe-Tx-rLC" id="hqh-0q-m6r"/>
                                             </connections>
                                         </menuItem>
                                     </items>

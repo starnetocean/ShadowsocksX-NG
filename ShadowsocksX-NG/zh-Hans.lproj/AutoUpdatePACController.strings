@@ -1,0 +1,30 @@
+
+/* Class = "NSTextFieldCell"; title = "White Domain List:"; ObjectID = "B1s-QM-AY6"; */
+"B1s-QM-AY6.title" = "自定义白名单地址:";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "自动更新PAC";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "L3f-H1-dUX"; */
+"L3f-H1-dUX.title" = "Item";
+
+/* Class = "NSTextFieldCell"; title = "GFW URL:"; ObjectID = "MYj-TA-sS6"; */
+"MYj-TA-sS6.title" = "GFW URL:";
+
+/* Class = "NSTextFieldCell"; title = "Period:"; ObjectID = "X5b-Ei-I7y"; */
+"X5b-Ei-I7y.title" = "自动更新周期:";
+
+/* Class = "NSTextFieldCell"; title = "White IP List:"; ObjectID = "ejz-ey-1OM"; */
+"ejz-ey-1OM.title" = "IP白名单URL:";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "iR5-bn-K0G"; */
+"iR5-bn-K0G.title" = "Item 1";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "oyp-bI-Abk"; */
+"oyp-bI-Abk.title" = "确定";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "t1O-sp-e4c"; */
+"t1O-sp-e4c.title" = "取消";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "zR0-gI-7fC"; */
+"zR0-gI-7fC.title" = "Item 3";
