@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var whiteListModeMenuItem: NSMenuItem!
     @IBOutlet weak var whiteListDomainMenuItem: NSMenuItem!
     @IBOutlet weak var whiteListIPMenuItem: NSMenuItem!
+    @IBOutlet weak var trafficLogMenuItem: NSMenuItem!
     
     @IBOutlet weak var serversMenuItem: NSMenuItem!
     @IBOutlet var showQRCodeMenuItem: NSMenuItem!
@@ -60,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "LocalSocks5.Timeout": NSNumber(unsignedInteger: 60),
             "LocalSocks5.EnableUDPRelay": NSNumber(bool: false),
             "LocalSocks5.EnableVerboseMode": NSNumber(bool: false),
+            "LocalSocks5.EnableTrafficLog": NSNumber(bool: false),
             "GFWListURL": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "WhiteListURL": "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/whitelist.pac",
             "WhiteListIPURL": "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/whiteiplist.pac",
@@ -286,6 +288,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         applyConfig()
     }
     
+    @IBAction func selectTrafficLogMenu(sender: NSMenuItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.boolForKey("LocalSocks5.EnableTrafficLog")) {
+            defaults.setValue(false, forKey: "LocalSocks5.EnableTrafficLog")
+        } else {
+            defaults.setValue(true, forKey: "LocalSocks5.EnableTrafficLog")
+        }
+        updateServersMenu()
+    }
+    
     @IBAction func editServerPreferences(sender: NSMenuItem) {
         if preferencesWinCtrl != nil {
             preferencesWinCtrl.close()
@@ -360,6 +372,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func updateRunningModeMenu() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let mode = defaults.stringForKey("ShadowsocksRunningMode")
+        
         if mode == "auto" {
             proxyMenuItem.title = "Proxy - Auto By PAC".localized
             autoModeMenuItem.state = 1
@@ -425,6 +438,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let showQRItem = showQRCodeMenuItem
         let scanQRItem = scanQRCodeMenuItem
         let preferencesItem = serversPreferencesMenuItem
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let shouldLog = defaults.boolForKey("LocalSocks5.EnableTrafficLog")
         
         var i = 0
         for p in mgr.profiles {
@@ -453,6 +468,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         serversMenuItem.submenu?.addItem(scanQRItem)
         serversMenuItem.submenu?.addItem(NSMenuItem.separatorItem())
         serversMenuItem.submenu?.addItem(preferencesItem)
+        if (shouldLog) {
+            trafficLogMenuItem.state = 1
+        } else {
+            trafficLogMenuItem.state = 0
+        }
     }
     
     func handleURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {

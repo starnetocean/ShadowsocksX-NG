@@ -26,6 +26,7 @@
                 <outlet property="showQRCodeMenuItem" destination="R6A-96-Zcb" id="XHz-pz-nCz"/>
                 <outlet property="statusMenu" destination="Hob-KD-bx9" id="clA-ZW-0pT"/>
                 <outlet property="toggleRunningMenuItem" destination="GSu-Tf-StS" id="XHw-pU-nCa"/>
+                <outlet property="trafficLogMenuItem" destination="vZo-gL-axA" id="YhK-2P-3sM"/>
                 <outlet property="whiteListDomainMenuItem" destination="L27-aH-Wwl" id="h4b-aF-lyt"/>
                 <outlet property="whiteListIPMenuItem" destination="Xbu-Kq-BSR" id="D9i-Xg-6Gc"/>
                 <outlet property="whiteListModeMenuItem" destination="RvZ-Zn-29U" id="2v5-Bd-EDj"/>
@@ -44,6 +45,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="LXP-yK-yQu"/>
+                <menuItem title="Traffic" id="vZo-gL-axA">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="selectTrafficLogMenu:" target="Voe-Tx-rLC" id="pz9-e1-aLB"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="p45-vw-euM"/>
                 <menuItem title="Proxy" id="diI-fB-Rss">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Proxy" id="YZp-bf-L40">
