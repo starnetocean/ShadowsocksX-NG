@@ -45,7 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var lanchAtLoginMenuItem: NSMenuItem!
     
     var statusItem: NSStatusItem!
-    var timer:NSTimer!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -68,7 +67,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "GFWListURL": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "WhiteListURL": "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/whitelist.pac",
             "WhiteListIPURL": "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/whiteiplist.pac",
-            "AutoConfigureNetworkServices": NSNumber(bool: true)
+            "AutoConfigureNetworkServices": NSNumber(bool: true),
+            "AutoUpdatePACList": NSNumber(bool: false),
+            "AutoUpdateWhiteList": NSNumber(bool: false)
         ])
         
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(20)
@@ -76,7 +77,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         image?.template = true
         statusItem.image = image
         statusItem.menu = statusMenu
-        
+        UpdatePACFromGFWList()
+        UpdatePACFromWhiteList()
+//        var updateGFWListTimer:NSTimer! = NSTimer.scheduledTimerWithTimeInterval(2.0, target:defaults.boolForKey("AutoUpdatePACList"), selector: Selector("UpdatePACFromGFWList:"), userInfo:nil, repeats:true)
+//        var updateWhiteListTimer:NSTimer! = NSTimer.scheduledTimerWithTimeInterval(2.0, target: defaults.boolForKey("AutoUpdateWhiteList"), selector: Selector("UpdatePACFromWhiteList:"), userInfo: nil, repeats: true)
         
         let notifyCenter = NSNotificationCenter.defaultCenter()
         notifyCenter.addObserverForName(NOTIFY_ADV_PROXY_CONF_CHANGED, object: nil, queue: nil
@@ -207,6 +211,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func automaticUpdateGFWList(sender: NSMenuItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let isOn = !defaults.boolForKey("AutoUpdatePACList")
+        //isOn = !isOn
+        defaults.setBool(isOn, forKey: "AutoUpdatePACList")
+        updateAutoUpdateMenu()
+        print(defaults.boolForKey("AutoUpdatePACList"))
     }//调用NSTimer
     
     @IBAction func automaticUpdateWhiteList(sender: NSMenuItem) {
@@ -214,6 +224,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         autoUpdatePACCtrl.showWindow(self)
         NSApp.activateIgnoringOtherApps(true)
         autoUpdatePACCtrl.window?.makeKeyAndOrderFront(nil)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let isOn = !defaults.boolForKey("AutoUpdateWhiteList")
+//        isOn = !isOn
+        defaults.setBool(isOn, forKey: "AutoUpdateWhiteList")
+        updateAutoUpdateMenu()
+        NSLog("auto update white list button click")
     }
     
     
@@ -432,6 +448,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             toggleRunningMenuItem.title = "Turn Shadowsocks On".localized
             let image = NSImage(named: "menu_icon_disabled")
             statusItem.image = image
+        }
+    }
+    
+    func updateAutoUpdateMenu() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let pacUpdate = defaults.boolForKey("AutoUpdatePACList")
+        let whiteListUpdate = defaults.boolForKey("AutoUpdateWhiteList")
+        if pacUpdate || whiteListUpdate {
+            automaticUpdatePACMenuItem.state = 1
+            if pacUpdate {
+                automaticUpdateGFWListMenuItem.state = 1
+            } else if whiteListUpdate {
+                automaticUpdateWhiteListMenuItem.state = 1
+            } else if !pacUpdate {
+                automaticUpdateGFWListMenuItem.state = 0
+            } else if !whiteListUpdate {
+                automaticUpdateWhiteListMenuItem.state = 0
+            }
+        } else {
+            automaticUpdatePACMenuItem.state = 0
+            if !pacUpdate {
+                automaticUpdateGFWListMenuItem.state = 0
+            } else if !whiteListUpdate {
+                automaticUpdateWhiteListMenuItem.state = 0
+            }
         }
     }
     
