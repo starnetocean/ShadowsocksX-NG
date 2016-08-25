@@ -61,6 +61,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "ShadowsocksRunningMode": "auto",
             "LocalSocks5.ListenPort": NSNumber(unsignedShort: 1086),
             "LocalSocks5.ListenAddress": "127.0.0.1",
+            "PacServer.ListenAddress": "127.0.0.1",
+            "PacServer.ListenPort":NSNumber(unsignedShort: 8090),
             "LocalSocks5.Timeout": NSNumber(unsignedInteger: 60),
             "LocalSocks5.EnableUDPRelay": NSNumber(bool: false),
             "LocalSocks5.EnableVerboseMode": NSNumber(bool: false),
@@ -92,6 +94,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         notifyCenter.addObserverForName(NOTIFY_SERVER_PROFILES_CHANGED, object: nil, queue: nil
             , usingBlock: {
             (note) in
+                let profileMgr = ServerProfileManager.instance
+                if profileMgr.activeProfileId == nil &&
+                    profileMgr.profiles.count > 0{
+                    if profileMgr.profiles[0].isValid(){
+                        profileMgr.setActiveProfiledId(profileMgr.profiles[0].uuid)
+                    }
+                }
                 self.updateServersMenu()
                 SyncSSLocal()
             }
@@ -100,6 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             , usingBlock: {
             (note) in
                 SyncSSLocal()
+                self.applyConfig()
             }
         )
         notifyCenter.addObserverForName("NOTIFY_FOUND_SS_URL", object: nil, queue: nil) {
@@ -159,7 +169,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
         StopSSLocal()
-        ProxyConfHelper.disableProxy()
+        ProxyConfHelper.disableProxy("hi")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(false, forKey: "ShadowsocksOn")
     }
     
     func applyConfig() {
@@ -170,24 +182,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if isOn {
             StartSSLocal()
             if mode == "auto" {
-                ProxyConfHelper.disableProxy()
-                ProxyConfHelper.enablePACProxy()
+                ProxyConfHelper.disableProxy("hi")
+                ProxyConfHelper.enablePACProxy("hi")
             } else if mode == "global" {
-                ProxyConfHelper.disableProxy()
+                ProxyConfHelper.disableProxy("hi")
                 ProxyConfHelper.enableGlobalProxy()
             } else if mode == "manual" {
-                ProxyConfHelper.disableProxy()
-                ProxyConfHelper.disableProxy()
+                ProxyConfHelper.disableProxy("hi")
+                ProxyConfHelper.disableProxy("hi")
             } else if mode == "whiteListDomain" {
-                ProxyConfHelper.disableProxy()
+                ProxyConfHelper.disableProxy("hi")
                 ProxyConfHelper.enableWhiteDomainListProxy()
             } else if mode == "whiteListIP" {
-                ProxyConfHelper.disableProxy()
+                ProxyConfHelper.disableProxy("hi")
                 ProxyConfHelper.enableWhiteIPListProxy()
             }
         } else {
             StopSSLocal()
-            ProxyConfHelper.disableProxy()
+            ProxyConfHelper.disableProxy("hi")
         }
     }
     
@@ -373,7 +385,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func feedback(sender: NSMenuItem) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/qiuyuzhou/ShadowsocksX-NG/issues")!)
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/qinyuhang/ShadowsocksX-NG/issues")!)
     }
     
     @IBAction func showAbout(sender: NSMenuItem) {
