@@ -95,12 +95,7 @@
 		0830AA6E1D605CE000E03461 /* AutoUpdatePACController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoUpdatePACController.swift; sourceTree = "<group>"; };
 		088EC3961D5F5B8600E40791 /* whitelist.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whitelist.pac; sourceTree = "<group>"; };
 		088EC3981D5F5BA300E40791 /* whiteiplist.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whiteiplist.pac; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		088EC3CC1D60549E00E40791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AutoUpdatePACController.xib; sourceTree = "<group>"; };
-		088EC3CF1D60593F00E40791 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AutoUpdatePACController.strings"; sourceTree = "<group>"; };
-=======
 		08AF56C01D6AFA7C00DC4F46 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
->>>>>>> develop
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-proxy_conf_helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
