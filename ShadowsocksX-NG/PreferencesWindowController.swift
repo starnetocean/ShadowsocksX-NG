@@ -24,6 +24,7 @@ class PreferencesWindowController: NSWindowController
     @IBOutlet weak var ObfsTextField: NSComboBox!
     @IBOutlet weak var ObfsParamTextField: NSTextField!
     
+    @IBOutlet weak var duplicateProfileButton: NSButton!
     @IBOutlet weak var passwordTextField: NSTextField!
     @IBOutlet weak var remarkTextField: NSTextField!
     
@@ -31,12 +32,14 @@ class PreferencesWindowController: NSWindowController
     
     @IBOutlet weak var copyURLBtn: NSButton!
     
+    @IBOutlet weak var removeButton: NSButton!
     let tableViewDragType: String = "ss.server.profile.data"
     
     var defaults: NSUserDefaults!
     var profileMgr: ServerProfileManager!
     
     var editingProfile: ServerProfile!
+
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -46,30 +49,39 @@ class PreferencesWindowController: NSWindowController
         profileMgr = ServerProfileManager.instance
         
         methodTextField.addItemsWithObjectValues([
+            "table",
+            "rc4",
+            "rc4-md5-6",
+            "rc4-md5",
             "aes-128-cfb",
             "aes-192-cfb",
             "aes-256-cfb",
-            "des-cfb",
             "bf-cfb",
+            "camellia-128-cfb",
+            "camellia-192-cfb",
+            "camellia-256-cfb",
             "cast5-cfb",
-            "rc4-md5",
-            "chacha20",
+            "des-cfb",
+            "idea-cfb",
+            "rc2-cfb",
+            "seed-cfb",
             "salsa20",
-            "rc4",
-            "table",
+            "chacha20",
+            "chacha20-ietf"
             ])
         ProtocolTextField.addItemsWithObjectValues([
             "origin",
             "verify_simple",
             "verify_sha1",
-            "auth_simple",
             "auth_sha1",
             "auth_sha1_v2",
+            "auth_sha1_v4",
             ])
         ObfsTextField.addItemsWithObjectValues([
             "palin",
             "http_simple",
-            "tls1.0_session_auth",
+            "tls_simple",
+            "random_head",
             "tls1.2_ticket_auth",
             ])
         profilesTableView.reloadData()
@@ -82,6 +94,7 @@ class PreferencesWindowController: NSWindowController
     
     @IBAction func addProfile(sender: NSButton) {
         if editingProfile != nil && !editingProfile.isValid(){
+            shakeWindows()
             return
         }
         profilesTableView.beginUpdates()
@@ -112,12 +125,14 @@ class PreferencesWindowController: NSWindowController
     @IBAction func ok(sender: NSButton) {
         if editingProfile != nil {
             if !editingProfile.isValid() {
-                // TODO Shake window?
+                // Done Shake window
+                shakeWindows()
                 return
             }
         }
         profileMgr.save()
         window?.performClose(nil)
+
         
         NSNotificationCenter.defaultCenter()
             .postNotificationName(NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
@@ -127,17 +142,41 @@ class PreferencesWindowController: NSWindowController
         window?.performClose(self)
     }
     
+    @IBAction func duplicateProfile(sender: NSButton) {
+        //读取当前profile，并且保存
+        if editingProfile != nil && !editingProfile.isValid(){
+            return
+        }
+        let oldProfileIndex = profilesTableView.selectedRow
+        if  oldProfileIndex >= 0 {
+            let oldProfile = profileMgr.profiles[oldProfileIndex]
+            profilesTableView.beginUpdates()
+            var newProfile = ServerProfile()
+            let newUUID = newProfile.uuid
+            newProfile = ServerProfile.fromDictionary(oldProfile.toDictionary())//here 因为UUID重复了
+            newProfile.uuid = newUUID
+            profileMgr.profiles.append(newProfile)
+            let index = NSIndexSet(index: profileMgr.profiles.count-1)
+            profilesTableView.insertRowsAtIndexes(index, withAnimation: .EffectFade)
+            self.profilesTableView.scrollRowToVisible(self.profileMgr.profiles.count-1)
+            self.profilesTableView.selectRowIndexes(index, byExtendingSelection: false)
+            profilesTableView.endUpdates()
+            updateProfileBoxVisible()
+            NSNotificationCenter.defaultCenter()
+                .postNotificationName(NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
+        }
+    }
+    
     @IBAction func copyCurrentProfileURL2Pasteboard(sender: NSButton) {
         let index = profilesTableView.selectedRow
         if  index >= 0 {
             let profile = profileMgr.profiles[index]
             let ssURL = profile.URL()
             if let url = ssURL {
-                // Then copy url to pasteboard
-                // TODO Why it not working?? It's ok in objective-c
+                
                 let pboard = NSPasteboard.generalPasteboard()
                 pboard.clearContents()
-                let rs = pboard.writeObjects([url])
+                let rs = pboard.setString(String(url), forType: NSStringPboardType)//writeObjects([url])
                 if rs {
                     NSLog("copy to pasteboard success")
                 } else {
@@ -148,6 +187,12 @@ class PreferencesWindowController: NSWindowController
     }
     
     func updateProfileBoxVisible() {
+        if profileMgr.profiles.count <= 1 {
+            removeButton.enabled = false
+        }else{
+            removeButton.enabled = true
+        }
+
         if profileMgr.profiles.isEmpty {
             profileBox.hidden = true
         } else {
@@ -323,5 +368,28 @@ class PreferencesWindowController: NSWindowController
                 profilesTableView.selectRowIndexes(index, byExtendingSelection: false)
             }
         }
+    }
+
+    func shakeWindows(){
+        let numberOfShakes:Int = 8
+        let durationOfShake:Float = 0.5
+        let vigourOfShake:Float = 0.05
+
+        let frame:CGRect = (window?.frame)!
+        let shakeAnimation = CAKeyframeAnimation()
+
+        let shakePath = CGPathCreateMutable()
+        CGPathMoveToPoint(shakePath, nil, NSMinX(frame), NSMinY(frame))
+
+        for _ in 1...numberOfShakes{
+            CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) - frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
+            CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) + frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
+        }
+
+        CGPathCloseSubpath(shakePath)
+        shakeAnimation.path = shakePath
+        shakeAnimation.duration = CFTimeInterval(durationOfShake)
+        window?.animations = ["frameOrigin":shakeAnimation]
+        window?.animator().setFrameOrigin(window!.frame.origin)
     }
 }

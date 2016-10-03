@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
@@ -14,15 +14,21 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ShadowsocksX_NG" customModuleProvider="target">
             <connections>
                 <outlet property="RunningStatusMenuItem" destination="fzk-mE-CEV" id="R4x-gK-Qcw"/>
+                <outlet property="ShowNetworkSpeedItem" destination="a3h-uQ-DuO" id="OLq-K8-rEO"/>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
+                <outlet property="connectAtLaunchMenuItem" destination="aB3-cf-5j0" id="kW6-UF-38P"/>
+                <outlet property="exportAllServerProfileItem" destination="6k0-gn-DQv" id="1xA-cd-5Ia"/>
                 <outlet property="globalModeMenuItem" destination="Mw3-Jm-eXA" id="ar5-Yx-3ze"/>
+                <outlet property="importBunchJsonFileItem" destination="T9g-gy-gvv" id="GW7-ii-U1j"/>
                 <outlet property="lanchAtLoginMenuItem" destination="eUq-p7-ICK" id="w4p-0c-DZn"/>
                 <outlet property="manualModeMenuItem" destination="8PR-gs-c5N" id="9qz-mU-5kt"/>
+                <outlet property="pingserverMenuItem" destination="zfR-Jt-GmS" id="Gjs-bY-0tm"/>
                 <outlet property="proxyMenuItem" destination="diI-fB-Rss" id="Qjk-9U-3Qy"/>
                 <outlet property="runningStatusMenuItem" destination="fzk-mE-CEV" id="Vwm-Rg-Ykn"/>
                 <outlet property="scanQRCodeMenuItem" destination="Qe6-bF-paT" id="XHa-pa-nCa"/>
                 <outlet property="serversMenuItem" destination="u5M-hQ-VSc" id="8gp-SY-Y4U"/>
                 <outlet property="serversPreferencesMenuItem" destination="M5r-E7-44f" id="voe-SX-k6a"/>
+                <outlet property="showBunchJsonExampleFileItem" destination="pdy-JE-50Q" id="aWi-DB-deq"/>
                 <outlet property="showQRCodeMenuItem" destination="R6A-96-Zcb" id="XHz-pz-nCz"/>
                 <outlet property="statusMenu" destination="Hob-KD-bx9" id="clA-ZW-0pT"/>
                 <outlet property="toggleRunningMenuItem" destination="GSu-Tf-StS" id="XHw-pU-nCa"/>
@@ -132,10 +138,28 @@
                                     <action selector="showQRCodeForCurrentServer:" target="Voe-Tx-rLC" id="t45-Zk-cai"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Scan QR Code From Screen ..." id="Qe6-bF-paT">
+                            <menuItem title="Scan QR Code From Screen..." id="Qe6-bF-paT">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="scanQRCodeFromScreen:" target="Voe-Tx-rLC" id="zQZ-IT-H4a"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show Bunch Json Example File..." id="pdy-JE-50Q">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showBunchJsonExampleFile:" target="Voe-Tx-rLC" id="2fR-af-bNb"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Import Bunch Json File..." id="T9g-gy-gvv">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="importBunchJsonFile:" target="Voe-Tx-rLC" id="ptm-YK-H93"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export All Server To Json..." id="6k0-gn-DQv">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="exportAllServerProfile:" target="Voe-Tx-rLC" id="C5A-Pp-tYo"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="6sL-A4-S7N"/>
@@ -148,6 +172,18 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Show network speed" id="a3h-uQ-DuO">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showSpeedTap:" target="Voe-Tx-rLC" id="8Zp-lV-yLN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Ping server" id="zfR-Jt-GmS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="doPingTest:" target="Voe-Tx-rLC" id="rRs-7S-tvD"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Advance Preference ..." id="bZ3-fy-34d">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -158,6 +194,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleLaunghAtLogin:" target="Voe-Tx-rLC" id="erk-ce-mO3"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Connect At Launch" id="aB3-cf-5j0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleConnectAtLaunch:" target="Voe-Tx-rLC" id="NEO-dn-WnC"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="DTJ-NF-Wxr"/>
