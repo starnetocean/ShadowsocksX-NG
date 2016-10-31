@@ -53,10 +53,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var statusItemView:StatusItemView!
     var statusItem: NSStatusItem?
     var speedMonitor:NetWorkMonitor?
+//    var ssLocalRunner : SSLocalRunner?
 
     // MARK: Application function
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        var ssLocalRunner = SSLocalRunner()
+        ssLocalRunner.startSSLocalRunner()
         // Insert code here to initialize your application
 //        PingServers.instance.ping()
 //        let newInstance = PingTest.init(hostName: "www.baidu.com")
