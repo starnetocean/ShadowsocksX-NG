@@ -632,7 +632,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     "NOTIFY_FOUND_SS_URL", object: nil
                     , userInfo: [
-                        "ruls": [url],
+                        "urls": [url],
                         "source": "url",
                     ])
             }
