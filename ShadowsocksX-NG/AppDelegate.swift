@@ -58,20 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-//        PingServers.instance.ping()
-//        let newInstance = PingTest.init(hostName: "www.baidu.com")
-//        newInstance.start()
-        let SerMgr = ServerProfileManager.instance
-        let pingServerQueue : dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-        
-        for profile in SerMgr.profiles {
-            let host = profile.serverHost
-            
-            dispatch_async(pingServerQueue, {
-//                print(profile.serverHost)
-                let pingInstance = PingTest.init(hostName: host)
-                pingInstance.start()
-            })}
+
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
         
         // Prepare ss-local
@@ -117,6 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                     }
                 }
                 self.updateServersMenu()
+                self.updateMainMenu()
                 SyncSSLocal()
             }
         )
@@ -149,9 +137,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                         } else if userInfo["source"] as! String == "url" {
                             userNote.subtitle = "By Handle SS URL".localized
                         }
-                        userNote.informativeText = "Host: \(profile.serverHost)"
-                        " Port: \(profile.serverPort)"
-                        " Encription Method: \(profile.method)".localized
+                        userNote.informativeText = "Host: \(profile.serverHost) Port: \(profile.serverPort) Encription Method: \(profile.method)".localized
                         userNote.soundName = NSUserNotificationDefaultSoundName
                         
                         NSUserNotificationCenter.defaultUserNotificationCenter()
